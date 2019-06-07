@@ -15,6 +15,6 @@ public class Main {
                 DiaryStorageServiceImplementation.class);
         server.getRegistry().freeze();
 
-        server.start();
+        server.startInNewThread(null);
     }
 }
