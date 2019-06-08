@@ -52,28 +52,6 @@ public class RpcServer extends Server {
             consumer.writeObject(result);
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
-        } finally {
-            if (provider != null) {
-                try {
-                    provider.close();
-                } catch (Exception e) {
-                    // dummy
-                }
-            }
-            if (consumer != null) {
-                try {
-                    consumer.close();
-                } catch (Exception e) {
-                    // dummy
-                }
-            }
-            if (socket != null) {
-                try {
-                    socket.close();
-                } catch (Exception e) {
-                    // dummy
-                }
-            }
         }
     }
 

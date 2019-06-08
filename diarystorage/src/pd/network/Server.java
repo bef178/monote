@@ -35,17 +35,17 @@ public class Server extends SocketAcceptor {
 
             @Override
             public void run() {
-                onSocketInWorkerThread(socket);
                 try {
-                    socket.close();
-                } catch (Exception e) {
-                    LOGGER.error("exception when close socket: {}", e.getMessage());
+                    onSocketInWorkerThread(socket);
+                } finally {
+                    closeSocket(socket);
                 }
             }
         });
     }
 
     /**
+     * unnecessary to close socket<br/>
      * override me<br/>
      */
     protected void onSocketInWorkerThread(Socket socket) {

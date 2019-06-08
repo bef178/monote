@@ -12,6 +12,16 @@ public class SocketAcceptor {
 
     static final Logger LOGGER = LoggerFactory.getLogger(SocketAcceptor.class);
 
+    protected static void closeSocket(Socket socket) {
+        if (socket != null) {
+            try {
+                socket.close();
+            } catch (Exception e) {
+                LOGGER.error("exception when close socket: {}", e.getMessage());
+            }
+        }
+    }
+
     private static ServerSocket createServerSocket(final int port) throws IOException {
         int numRetry = 1;
         int retryInterval = 1000;
@@ -46,6 +56,7 @@ public class SocketAcceptor {
      */
     protected void onSocket(Socket socket) {
         LOGGER.info("socket handled");
+        closeSocket(socket);
     }
 
     /**
